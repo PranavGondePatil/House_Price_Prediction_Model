@@ -1,0 +1,388 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+
+.switch-field {
+  display: flex;
+  margin-bottom: 36px;
+  overflow: hidden;
+}
+
+.switch-field input {
+  position: absolute !important;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.switch-field label {
+  background-color: #e0e0e0;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 14px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.switch-field label:hover {
+  cursor: pointer;
+}
+
+.switch-field input:checked + label {
+  background-color: #66bb6a; /* Light green */
+  box-shadow: none;
+}
+
+.switch-field label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.switch-field label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+
+.form {
+  width: 100%;
+  max-width: 100%;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  line-height: 1.625;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+h2 {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.area, .location {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 12px;
+  font-size: 15px;
+  height: 40px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.area {
+  height: 35px;
+}
+
+.submit {
+  background: linear-gradient(90deg, #66bb6a 0%, #43cea2 100%);
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
+  padding: 15px;
+  font-size: 15px;
+  height: 40px;
+  text-align: center;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(67, 206, 162, 0.2);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(67, 206, 162, 0.3);
+}
+
+.result {
+  background: #23272f;
+  color: #43cea2;
+  width: 100%;
+  border: 0;
+  margin: 20px 0;
+  padding: 22px 0;
+  font-size: 2.1rem;
+  font-weight: 900;
+  text-align: center;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(67, 206, 162, 0.18);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: resultFadeIn 0.6s 0.1s forwards;
+  letter-spacing: 0.03em;
+  border: 2.5px solid #43cea2;
+  text-shadow: 0 0 8px #43cea2, 0 2px 12px #23272f;
+  transition: box-shadow 0.2s, border 0.2s;
+}
+
+.result:hover {
+  box-shadow: 0 8px 32px #43cea244, 0 2px 12px #23272f44;
+  border: 2.5px solid #66bb6a;
+}
+
+@keyframes resultFadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* 
+.img {
+  background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1500&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  filter: blur(8px) brightness(0.92) saturate(1.1);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  transition: filter 1s ease-in-out;
+} */
+
+body, html {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  background: #181c22;
+  color: #f3f6fa;
+  margin: 0;
+}
+
+.overlay {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(24, 28, 34, 0.85);
+  z-index: -1;
+}
+
+.overlay::before {
+  display: none !important;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  background: rgba(30, 34, 40, 0.95);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  padding: 40px 30px;
+  max-width: 420px;
+  width: 100%;
+  margin: 32px 0;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(10px) saturate(1.2);
+  animation: cardPopIn 0.8s cubic-bezier(.68,-0.55,.27,1.55);
+  border: 1.5px solid rgba(67, 206, 162, 0.10);
+  overflow: hidden;
+}
+
+@keyframes cardPopIn {
+  0% {
+    transform: scale(0.95) translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #43cea2;
+  margin-bottom: 8px;
+  background: linear-gradient(90deg, #43cea2 0%, #66bb6a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.header p {
+  color: #b0bac9;
+  font-size: 1.1rem;
+  margin-bottom: 0;
+  letter-spacing: 0.01em;
+}
+
+.form label {
+  display: block;
+  margin-bottom: 6px;
+  color: #f3f6fa;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form input[type="text"],
+.form select {
+  width: 100%;
+  padding: 12px 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #333a45;
+  background: #23272f;
+  color: #f3f6fa;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(67,206,162,0.05);
+}
+
+.form input[type="text"]:focus,
+.form select:focus {
+  border: 1.5px solid #43cea2;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.13);
+}
+
+.switch-field label {
+  min-width: 36px;
+  padding: 10px 16px;
+  font-size: 1rem;
+  border-radius: 10px;
+  margin-right: 6px;
+  background: #f8ffae;
+  color: #43cea2;
+  border: 1.5px solid #ffb7c5;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(255,183,197,0.07);
+}
+
+.switch-field input:checked + label {
+  background: linear-gradient(90deg, #ffb7c5 0%, #43cea2 100%);
+  color: #fff;
+  border: 1.5px solid #43cea2;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.13);
+}
+
+.submit {
+  background: linear-gradient(90deg, #43cea2 0%, #66bb6a 100%);
+  color: #181c22;
+  font-weight: 600;
+  font-size: 1.12rem;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: 15px 0;
+  margin: 18px 0 10px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.13);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+  letter-spacing: 0.03em;
+}
+
+.submit:hover {
+  background: linear-gradient(90deg, #66bb6a 0%, #43cea2 100%);
+  box-shadow: 0 4px 16px rgba(255,183,197,0.18);
+  transform: translateY(-1px) scale(1.03);
+}
+
+.area,
+.location,
+.submit,
+.result {
+  width: 100%;
+  margin: 0 0 10px 0;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 14px 4px 12px 4px;
+    max-width: 98vw;
+  }
+  .header h1 {
+    font-size: 1.1rem;
+  }
+}
+
+.location {
+  font-family: "Roboto", sans-serif;
+  outline: none;
+  background: #23272f;
+  color: #f3f6fa;
+  width: 100%;
+  border: 1px solid #43cea2;
+  margin-bottom: 10px;
+  padding: 12px 40px 12px 14px;
+  font-size: 1rem;
+  height: 40px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 2px 8px rgba(67,206,162,0.08);
+  position: relative;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%2343cea2" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 22px 22px;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.location:focus, .location:hover {
+  border: 1.5px solid #66bb6a;
+  box-shadow: 0 4px 16px rgba(67,206,162,0.15);
+}
+
+.location option {
+  background: #23272f;
+  color: #f3f6fa;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.18;
+  background: linear-gradient(270deg, #43cea2, #66bb6a, #3a4256, #43cea2);
+  background-size: 800% 800%;
+  animation: animatedGradient 18s ease-in-out infinite;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.card > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes animatedGradient {
+  0% {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100% {background-position:0% 50%}
+}
