@@ -4,6 +4,10 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/')
+def home():
+    return "Backend is running! Use the API endpoints."
+
 @app.route('/get_location_names', methods=['GET'])
 def get_location_names():
     response = jsonify({
